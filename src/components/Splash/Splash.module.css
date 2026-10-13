@@ -1,0 +1,23 @@
+.splash {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImg {
+  width: 23rem;
+  padding-bottom: 2rem;
+  margin-bottom: 10rem;
+  animation: scale 10s ease-out;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.7);
+  }
+}
