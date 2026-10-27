@@ -1,0 +1,415 @@
+.cows {
+  /* height: 100vh; */
+  margin: 0 auto;
+  margin-top: 7rem;
+  max-width: 55rem;
+  position: relative;
+}
+
+.herd {
+  margin: 0 1.6rem;
+  margin-top: 9rem;
+  font-size: 2.2rem;
+  font-weight: 900;
+}
+
+.herdUlBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 1.6rem;
+  margin-bottom: 0;
+}
+
+.herdUl {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.herdLabel {
+  font-weight: 900;
+  list-style: none;
+  font-size: 1.2rem;
+  /* background-color: rgb(29, 105, 29); */
+  background-color: rgba(161, 161, 161, 0.295);
+  /* color: white; */
+  color: rgba(66, 65, 65, 0.658);
+  padding: 0.8rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  span {
+    background-color: transparent;
+    border-radius: 0.8rem;
+    margin-left: 0.4rem;
+    transition: all 0.2s ease;
+  }
+}
+
+.herdLabelSelect {
+  color: rgb(234, 233, 233);
+  background-color: rgb(15, 129, 19);
+}
+
+.herdSpanSelect {
+  color: rgb(234, 233, 233);
+}
+
+.plusIconBox {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 3rem;
+  background-color: rgb(31, 98, 31);
+  transition: all 0.3s ease-out;
+  z-index: 1001;
+}
+
+.plusIconBig {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  transform: rotate(45deg);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.plusIcon {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.plusIconBoxBig {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  height: 90%;
+  width: 95%;
+  background-color: rgb(244, 244, 244);
+  /* backdrop-filter: blur(20px); */
+  border-radius: 3rem;
+  z-index: 1001;
+  box-shadow:
+    0 -10rem 20rem rgba(0, 0, 0, 0.368),
+    0 10rem 20rem rgba(0, 0, 0, 0.368),
+    -10rem 0 20rem rgba(0, 0, 0, 0.368),
+    10rem 0 20rem rgba(0, 0, 0, 0.368);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+}
+
+/* /////////////////////////////////////////////// */
+
+.addCowBoxHidden {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.addCowBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+  padding-top: 2.8rem;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.addCowHeading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.imgInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.addPhotoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.addPhoto {
+  color: red;
+}
+
+.done {
+  color: green;
+  font-weight: 900;
+}
+
+.cameraIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: rgb(202, 205, 253);
+  cursor: pointer;
+}
+
+.addPhotoText {
+  font-size: 1rem;
+  /* color: grey; */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.label {
+  color: grey;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.input {
+  border: 1px solid rgb(165, 164, 164);
+  outline: none;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem;
+  padding-left: 1.4rem;
+  width: 100%;
+  background-color: transparent;
+  color: rgb(27, 27, 27);
+}
+
+.input::placeholder {
+  color: rgb(210, 210, 210);
+}
+
+.nameAndPrice,
+.categoryAndCapacity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+
+.btns {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.chooseType {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 38%;
+  height: 3.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  /* border: 1px solid rgb(219, 219, 219); */
+  /* background-color: rgb(226, 225, 225); */
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .calfType,
+  .cowType {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: rgb(228, 228, 228);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+
+  .active {
+    background-color: rgba(191, 0, 0, 0.74);
+    color: white;
+  }
+
+  .calfType:active,
+  .cowType:active {
+    transform: scaleX(0.7);
+  }
+
+  .calfType {
+    border-right: 1px solid white;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+  .cowType {
+    border-left: 1px solid white;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+}
+
+.cowBtn {
+  width: 58%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.4rem;
+  border-radius: 1.4rem;
+  background-color: rgb(1, 103, 1);
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* /////////////////////////////////////////////// */
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1.6rem;
+  gap: 2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.217);
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  background-color: rgba(172, 172, 172, 0.15);
+}
+
+.searchInput {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.searchInput::placeholder {
+  color: rgba(105, 105, 105, 0.42);
+}
+
+.filterIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 2px solid rgba(128, 128, 128, 0.251);
+  /* border-radius: 1.6rem; */
+}
+
+/* //////////////////////////////////////////// */
+
+.cowLists {
+  margin: 0 1.6rem;
+  height: 64vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.cowList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+  gap: 1.6rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.217);
+  cursor: pointer;
+}
+
+.cowList:last-child {
+  margin-bottom: 10rem;
+}
+
+.cowImageBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7.6rem;
+  height: 5.6rem;
+  overflow: hidden;
+  border: 1px solid rgba(128, 128, 128, 0.094);
+  border-radius: 1.6rem;
+  background-color: rgba(128, 128, 128, 0.071);
+
+  .cowImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cowTexts {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.cowNameAndCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cowName {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.cowCategories {
+  font-size: 1.2rem;
+  color: grey;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.cowCapacity {
+  font-size: 1.4rem;
+  color: rgb(78, 78, 78);
+}
+
+.arrowRight {
+  margin-right: 1rem;
+}

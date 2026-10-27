@@ -1,0 +1,139 @@
+.invoice {
+  border: 1px solid rgba(128, 128, 128, 0.474);
+  margin: 2rem;
+  border-radius: 3rem;
+  padding: 1.6rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pdfContainer {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: 894px;
+  height: 100vh;
+  background-color: red;
+}
+
+.invoiceHeading {
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 900;
+  border-bottom: 1px solid rgb(165, 164, 164);
+}
+
+.dateAndPhoneInputBox {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.dateInputBox,
+.phoneInputBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(107, 107, 107);
+  margin-bottom: 0.4rem;
+  margin-left: 1rem;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  border-radius: 2rem;
+  border: 1px solid grey;
+  outline: none;
+  font-size: 1.6rem;
+  background-color: white;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.input:focus {
+  border: 1px solid orange;
+}
+
+.input::placeholder {
+  color: rgba(128, 128, 128, 0.449);
+}
+
+.numberInputBoxes {
+  display: flex;
+  gap: 2rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  /* background: linear-gradient(to bottom, rgba(216, 215, 215, 0.477), white);
+  border-top: 1px solid grey; */
+}
+
+.numberInputBox {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    padding-top: 1rem;
+  }
+}
+
+.totalBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 1rem;
+
+  h3 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-right: 1.2rem;
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 48%;
+  border-radius: 2rem;
+  border: 2px solid rgba(128, 128, 128, 0.158);
+  padding: 1rem 1.4rem;
+  font-weight: 900;
+  color: rgb(80, 80, 80);
+}
+
+.calculateBtn {
+  font-size: 1.4rem;
+  text-align: center;
+  background-color: rgba(153, 148, 86, 0.229);
+}
+
+.downloadBtn {
+  background-color: rgba(31, 111, 31, 0.8);
+  color: white;
+}
+
+/* //////////////////////////////////////////////////////////// */

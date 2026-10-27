@@ -1,0 +1,309 @@
+.pdf {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 110rem;
+  /* margin: 0 auto; */
+  /* width: 794px; */
+  /* padding: 30px; */
+  /* margin: 20px; */
+  background-color: #fffcf5;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 2rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.topHeading {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}
+
+.logoNameBox {
+  width: 58%;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgb(171, 136, 20);
+  overflow: hidden;
+}
+
+.logoName {
+  height: 17rem;
+  object-fit: cover;
+  object-position: right;
+  padding-right: 2.8rem;
+}
+
+.milkDeliveryBox {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-evenly;
+  /* margin-left: 4rem; */
+}
+
+.milkDeliveryText {
+  color: black;
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: "Times New Roman", Times, serif;
+}
+.invoiceText {
+  font-size: 3.2rem;
+  font-weight: 600;
+  transform: scaleY(1.1);
+  color: rgb(171, 136, 20);
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* /////////////////////////// */
+
+.dateBoxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid rgba(176, 145, 45, 0.128);
+  border-radius: 1.6rem;
+  background-color: rgba(254, 249, 231, 0.507);
+
+  .verticalLine {
+    height: 5rem;
+    width: 1px;
+    background-color: rgba(171, 136, 20, 0.466);
+  }
+}
+
+.dateBox {
+  display: flex;
+  gap: 1.4rem;
+  width: 100%;
+  padding: 2.4rem;
+  align-items: center;
+}
+
+.dateSpans {
+  span {
+    color: grey;
+    font-size: 1.6rem;
+  }
+
+  .date {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: "Times New Roman", Times, serif;
+  }
+}
+
+.calendarIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(171, 136, 20, 0.45);
+  background-color: rgba(171, 136, 20, 0.185);
+}
+
+/* /////////////////////////// */
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.6rem;
+  padding: 2.4rem;
+  border: 1px solid rgba(171, 136, 20, 0.646);
+  background-color: rgba(254, 249, 231, 0.142);
+}
+
+.userDetailsHeader {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.userRound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(171, 136, 20, 0.84);
+  background-color: rgba(145, 111, 1, 0.66);
+}
+
+.billTo {
+  font-size: 2rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  color: rgba(145, 111, 1, 0.779);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.userNameAndPhone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userNameBox,
+.userPhoneBox {
+  width: 50%;
+  padding-left: 5.4rem;
+  font-family: "Times New Roman", Times, serif;
+
+  span {
+    color: grey;
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    font-family: "Times New Roman", Times, serif;
+  }
+}
+
+.userPhoneBox {
+  border-left: 1.5px solid rgba(171, 136, 20, 0.386);
+}
+
+/* //////////////////////// */
+
+.quantityBox {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid rgba(128, 128, 128, 0.317); */
+  border-radius: 1.2rem;
+  background-color: rgba(254, 249, 231, 0.717);
+}
+
+.items {
+  text-align: center;
+  flex: auto;
+  font-family: "Times New Roman", Times, serif;
+  border-left: 0.1px solid rgba(68, 53, 4, 0.194);
+  border-bottom: 0.1px solid rgba(68, 53, 4, 0.194);
+  border-top: 0.1px solid rgba(68, 53, 4, 0.194);
+  overflow: hidden;
+
+  h3 {
+    padding: 1.8rem 0;
+    background-color: rgb(24, 69, 37);
+    color: white;
+    letter-spacing: 1px;
+    font-size: 1.7rem;
+
+    font-family: "Times New Roman", Times, serif;
+  }
+  p {
+    padding: 1.8rem 0;
+    padding-bottom: 2.2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: "Times New Roman", Times, serif;
+  }
+}
+
+.items:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.items:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-right: 0.1px solid rgba(68, 53, 4, 0.194);
+}
+
+/* //////////////////////////// */
+
+.totalAmountBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 58%;
+  border-radius: 1.6rem;
+  align-self: flex-end;
+  padding: 1.4rem 0;
+  border: 0.1px solid rgba(68, 53, 4, 0.468);
+  background-color: rgba(193, 185, 155, 0.151);
+}
+
+.totalAmountText {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgb(82, 82, 82);
+  letter-spacing: 2px;
+  font-family: "Times New Roman", Times, serif;
+  border-right: 1px solid rgba(68, 53, 4, 0.468);
+}
+
+.totalAmountText,
+.totalAmount {
+  padding: 1rem 1.8rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.totalAmount {
+  font-size: 3.4rem;
+  font-weight: 900;
+}
+
+/*///////////////////////////// */
+
+.thankingBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.thankingText {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2rem;
+  padding: 0.8rem 1.4rem;
+  border-left: 2px solid rgba(165, 128, 3, 0.571);
+
+  span {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    transform: scaleY(1.1);
+  }
+}
+
+.signatureBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .signatureImg {
+    width: 15rem;
+  }
+
+  p {
+    border-top: 2px solid rgb(33, 33, 33);
+    padding: 1rem 3rem;
+    color: grey;
+    font-size: 1.3rem;
+  }
+}
+/* ///////////////////////////// */
+
+.bottomImg {
+  width: 100%;
+  z-index: -1;
+}

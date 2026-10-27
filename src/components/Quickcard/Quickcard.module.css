@@ -1,0 +1,95 @@
+.chooseGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 3rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.quickAccess {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.innerChoose {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: rgba(128, 128, 128, 0.526);
+  cursor: pointer;
+
+  span {
+    height: 1.4rem;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.47);
+    border-radius: 1rem;
+  }
+}
+
+.quickList {
+  place-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.8rem;
+  margin: 1rem 1.6rem;
+  cursor: pointer;
+
+  p {
+    font-size: 1.6rem;
+  }
+}
+
+.makeQuickGrid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.makeQuickList {
+  grid-template-columns: 1fr;
+}
+
+.quickcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.8rem 0;
+  gap: 1.6rem;
+  min-width: 100%;
+  border-radius: 1.6rem;
+  text-decoration: none;
+  border: 1px solid rgba(128, 128, 128, 0.09);
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: rgb(11, 11, 11);
+  }
+}
+
+.makeGrid {
+  flex-direction: column;
+}
+
+.makeList {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 4rem;
+  gap: 2rem;
+
+  p {
+    font-size: 1.6rem;
+    color: rgb(24, 24, 24);
+    font-weight: 500;
+  }
+}
+
+.chevronRight {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+}

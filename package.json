@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^13.0.0",
+    "@imagekit/javascript": "^5.5.1",
+    "firebase": "^13.1.0",
+    "html2pdf.js": "^0.14.0",
+    "lucide-react": "^1.56.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -2,7 +2,13 @@
 
 html {
   font-size: 62.5%;
-  /* font-size: 120%; */
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+:root {
+  --bg-color: rgb(255, 252, 245);
 }
 
 * {
@@ -19,7 +25,7 @@ html {
 }
 
 body {
-  max-width: 120rem;
+  /* max-width: 120rem; */
   background-color: rgb(255, 252, 245);
   /* background-color: #fdfcf3; */
   margin: 0 auto;

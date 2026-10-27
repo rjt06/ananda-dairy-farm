@@ -1,0 +1,38 @@
+.reminder {
+  margin: 2rem;
+}
+
+.reminderHeader {
+  margin: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    p {
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    .seeAll {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+  }
+}
+
+.upcoming {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: rgba(253, 69, 69, 0.318);
+  color: rgb(255, 68, 0);
+  font-weight: 900;
+  border: 1px solid rgba(128, 128, 128, 0.296);
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.2); */
+}

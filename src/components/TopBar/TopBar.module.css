@@ -1,0 +1,16 @@
+.imgDiv {
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0.5rem 1rem rgb(236, 235, 235);
+  background-color: rgb(255, 252, 245);
+}
+
+.logoName {
+  width: 20rem;
+  margin: 0.5rem;
+}
