@@ -2,14 +2,14 @@ import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import { upload } from "@imagekit/javascript";
 
-const animalCollection = collection(db, "animals");
+// const animalCollection = collection(db, "users");
 
 // UPLOAD AN IMAGE---------------------------------------------------------
 export const imageUpload = async image => {
   if (!image) return;
 
   try {
-    const response = await fetch("http://localhost:5000/auth");
+    const response = await fetch("https://ananda-dairy-farm.onrender.com/auth");
     if (!response.ok) {
       throw new Error("Authentication failed");
     }
@@ -33,23 +33,19 @@ export const imageUpload = async image => {
 };
 
 // ADD COW OBJECT---------------------------------------------------------
-// export const addCow = async ({
-//   img,
-//   name,
-//   price,
-//   date,
-//   category,
-//   litres = 0,
-//   address,
-// }) => {
+// export const addAnimal = async (
+//   { img, name, price, date, category, litres = 0, animalType, address },
+//   uid,
+// ) => {
 //   try {
-//     const cowDocRef = await addDoc(cowCollection, {
+//     const cowDocRef = await addDoc(collection(db, "users", uid), {
 //       img: img,
 //       name: name,
 //       price: price,
 //       date: date,
 //       category: category,
 //       litres: litres,
+//       animalType: animalType,
 //       address: address,
 //     });
 
@@ -59,72 +55,18 @@ export const imageUpload = async image => {
 //   }
 // };
 
-// ADD COW OBJECT---------------------------------------------------------
-export const addAnimal = async ({
-  img,
-  name,
-  price,
-  date,
-  category,
-  litres = 0,
-  animalType,
-  address,
-}) => {
-  try {
-    const cowDocRef = await addDoc(animalCollection, {
-      img: img,
-      name: name,
-      price: price,
-      date: date,
-      category: category,
-      litres: litres,
-      animalType: animalType,
-      address: address,
-    });
-
-    // console.log("COW Document ID:", cowDocRef.id);
-  } catch (error) {
-    console.error("Error ->>>>", error);
-  }
-};
-
-// ADD CALF OBJECT---------------------------------------------------------
-// export const addCalf = async ({
-//   img,
-//   name,
-//   price,
-//   date,
-//   category,
-//   address,
-// }) => {
+// export const getAnimals = async uid => {
 //   try {
-//     const calfDocRef = await addDoc(calfCollection, {
-//       img: img,
-//       name: name,
-//       price: price,
-//       date: date,
-//       category: category,
-//       address: address,
-//     });
+//     const querySnapShot = await getDocs(collection(db, "users", uid));
+//     const animalList = querySnapShot.docs.map(doc => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
 
-//     // console.log("CALF Document ID:", calfDocRef.id);
+//     // console.log(animalList);
+
+//     return animalList;
 //   } catch (error) {
-//     console.error("Error ->>>>", error);
+//     console.error("ERROR fetching cows:", error);
 //   }
 // };
-
-export const getAnimals = async () => {
-  try {
-    const querySnapShot = await getDocs(animalCollection);
-    const animalList = querySnapShot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
-    // console.log(animalList);
-
-    return animalList;
-  } catch (error) {
-    console.error("ERROR fetching cows:", error);
-  }
-};

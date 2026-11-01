@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./Cows.module.css";
+import { db } from "../../scripts/firebase.js";
 import { Camera, ChevronRight, ListFilter, Plus, Search } from "lucide-react";
-import { addAnimal, getAnimals } from "../../scripts/crud";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { imageUpload } from "../../scripts/crud.js";
 
-function Cows() {
+function Cows({ user, getAnimals }) {
   const [search, setSearch] = useState("");
   const [openAddAnimal, setOpenAddAnimal] = useState(false);
   const [animalImage, setAnimalImage] = useState(null);
@@ -27,6 +28,7 @@ function Cows() {
 
   useEffect(() => {
     getListfromCloud();
+    // console.log(user.uid);
   }, []);
 
   useEffect(() => {
@@ -36,6 +38,28 @@ function Cows() {
   useEffect(() => {
     sortList(animalList);
   }, [herd]);
+
+  const addAnimal = async (
+    { img, name, price, date, category, litres = 0, animalType, address },
+    uid,
+  ) => {
+    try {
+      const cowDocRef = await addDoc(collection(db, "users", uid, "cows"), {
+        img: img,
+        name: name,
+        price: price,
+        date: date,
+        category: category,
+        litres: litres,
+        animalType: animalType,
+        address: address,
+      });
+
+      // console.log("COW Document ID:", cowDocRef.id);
+    } catch (error) {
+      console.error("Error ->>>>", error);
+    }
+  };
 
   const sortList = animalList => {
     let sortedList;
@@ -50,9 +74,10 @@ function Cows() {
   };
 
   const getListfromCloud = async () => {
-    const animalList = await getAnimals();
+    const animalList = await getAnimals(user.uid);
     setAnimalList(animalList);
     setTempAnimalList(animalList);
+    // console.log(animalList);
   };
 
   const animalCount = animalList => {
@@ -83,19 +108,27 @@ function Cows() {
   };
 
   const submitForm = async e => {
+    console.log("Form submitted");
     e.preventDefault();
     setOpenAddAnimal(false);
-    const uploadedImg = await imageUpload(animalImage);
-    addAnimal({
-      img: uploadedImg,
-      name: name,
-      price: price,
-      date: date,
-      category: category,
-      litres: litres,
-      animalType: animalType,
-      address: address,
-    });
+    const imageUrl = await imageUpload(animalImage);
+    if (!imageUrl) {
+      throw new Error("Image upload failed");
+    }
+    // console.log("UPLOADED Image", uploadedImg);
+    addAnimal(
+      {
+        img: imageUrl,
+        name: name,
+        price: price,
+        date: date,
+        category: category,
+        litres: litres,
+        animalType: animalType,
+        address: address,
+      },
+      user.uid,
+    );
     setAnimalImage(null);
     setName("");
     setPrice("");
@@ -370,7 +403,8 @@ function Cows() {
                   <h3 className={style.cowName}>{animal.name}</h3>
                   <div className={style.cowCategories}>
                     <span>{animal.category}</span> •
-                    <span>{animal.animalType}</span>
+                    <span>{animal.animalType}</span> •
+                    <span>{animal.address}</span>
                   </div>
                 </div>
                 <div className={style.cowCapacity}>

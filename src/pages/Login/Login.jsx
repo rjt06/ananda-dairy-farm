@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../scripts/firebase";
-import logoName from "../../assets/logoname.webp";
 import style from "./Login.module.css";
-import signupSvg from "../../../public/signup.svg";
 import logo from "../../assets/logo.webp";
 import backgroundImg from "../../assets/background.webp";
 import google from "../../assets/google.webp";
