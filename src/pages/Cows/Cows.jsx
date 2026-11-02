@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import style from "./Cows.module.css";
 import { db } from "../../scripts/firebase.js";
 import { Camera, ChevronRight, ListFilter, Plus, Search } from "lucide-react";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDoc, doc } from "firebase/firestore";
 import { imageUpload } from "../../scripts/crud.js";
+import Animal from "../../components/Animal/Animal";
 
 function Cows({ user, getAnimals }) {
   const [search, setSearch] = useState("");
   const [openAddAnimal, setOpenAddAnimal] = useState(false);
+  const [openAnimal, setOpenAnimal] = useState(false);
   const [animalImage, setAnimalImage] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -16,6 +18,7 @@ function Cows({ user, getAnimals }) {
   const [litres, setLitres] = useState("");
   const [address, setAddress] = useState("");
   const [animalType, setAnimalType] = useState("");
+  const [animalId, setAnimalId] = useState("");
   const [animalList, setAnimalList] = useState([]);
   const [tempAnimalList, setTempAnimalList] = useState([]);
   const [totalAnimalsCount, setTotalAnimalsCount] = useState();
@@ -80,6 +83,19 @@ function Cows({ user, getAnimals }) {
     // console.log(animalList);
   };
 
+  const getAnimalData = async animalId => {
+    try {
+      const animalData = await getDoc(
+        doc(db, "users", user.uid, "cows", animalId),
+      );
+
+      // console.log(animalList);
+      return animalData.data();
+    } catch (error) {
+      console.error("ERROR fetching animaldata:", error);
+    }
+  };
+
   const animalCount = animalList => {
     setTotalAnimalsCount(animalList.length);
     let cowCount = 0;
@@ -142,6 +158,15 @@ function Cows({ user, getAnimals }) {
 
   return (
     <div className={style.cows}>
+      {openAnimal ? (
+        <Animal
+          animalId={animalId}
+          getAnimalData={getAnimalData}
+          setOpenAnimal={setOpenAnimal}
+        />
+      ) : (
+        ""
+      )}
       <h2 className={style.herd}>
         Your Herd <span>(3)</span>
       </h2>
@@ -283,7 +308,7 @@ function Cows({ user, getAnimals }) {
                   ref={calfTypeRef}
                   className={style.calfType}
                   onClick={e => {
-                    setAnimalType("calf");
+                    setAnimalType("Calf");
                     e.target.classList.add(style.active);
                     cowTypeRef.current.classList.remove(style.active);
                   }}
@@ -294,7 +319,7 @@ function Cows({ user, getAnimals }) {
                   ref={cowTypeRef}
                   className={`${style.cowType}`}
                   onClick={e => {
-                    setAnimalType("cow");
+                    setAnimalType("Cow");
                     e.target.classList.add(style.active);
                     calfTypeRef.current.classList.remove(style.active);
                   }}
@@ -359,15 +384,6 @@ function Cows({ user, getAnimals }) {
               {totalCalfCount}
             </span>
           </label>
-          {/* <li className={style.herdLi}>
-            All <span>{totalAnimalsCount}</span>
-          </li>
-          <li className={style.herdLi}>
-            Cows <span>3</span>
-          </li>
-          <li className={style.herdLi}>
-            Calves <span>3</span>
-          </li> */}
         </ul>
       </div>
       <div className={style.searchBox}>
@@ -390,7 +406,14 @@ function Cows({ user, getAnimals }) {
         {/* /////////////////////////////////////////////////////////// */}
         {tempAnimalList.map(animal => {
           return (
-            <div key={animal.id} className={style.cowList}>
+            <div
+              key={animal.id}
+              className={style.cowList}
+              onClick={() => {
+                setAnimalId(animal.id);
+                setOpenAnimal(true);
+              }}
+            >
               <div className={style.cowImageBox}>
                 <img
                   className={style.cowImage}
