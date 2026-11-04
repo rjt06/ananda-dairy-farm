@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./Home.module.css";
+import app from "../../App.module.css";
 import { dateWithDay, greetingMessage } from "../../scripts/date";
 import backgroundImg from "../../assets/background.webp";
 import Quickcard from "../../components/Quickcard/Quickcard";
@@ -27,7 +28,7 @@ function Home({ user }) {
   const [type, setType] = useState("grid");
 
   return (
-    <div className={style.home}>
+    <div className={`${style.home} ${app.animateEnter}`}>
       <div className={style.greetingCard}>
         <div className={style.greeting}>
           <p className={style.goodMorning}>{greetingMessage()},</p>

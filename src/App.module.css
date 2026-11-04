@@ -1,10 +1,48 @@
-.imgDiv {
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 0.5rem 1rem rgb(236, 235, 235);
+.animateEnter {
+  animation: enter 0.4s ease both;
+}
+.animateRight {
+  animation: right 0.2s ease both;
 }
 
-.logoName {
-  width: 20rem;
-  margin: 0.5rem;
+.animateAppear {
+  animation: appear 1s ease both;
+}
+
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes right {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) scale(0.98);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

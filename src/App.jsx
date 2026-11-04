@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { connectAuthEmulator, onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "./scripts/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "./firebase/firebase";
 import Splash from "./components/Splash/Splash";
-import { collection, getDocs } from "firebase/firestore";
-// import { db } from "./scripts/firebase.js";
+// import { collection, getDocs } from "firebase/firestore";
 import style from "./App.module.css";
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -14,40 +13,55 @@ import Cows from "./pages/Cows/Cows";
 import Login from "./pages/Login/Login";
 import Meds from "./pages/Meds/Meds";
 import Feed from "./pages/Feed/Feed";
+import { getCurrentUser, subscribeToAuth } from "./firebase/auth";
+import { getCollection } from "./firebase/firestore";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getCurrentUser());
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const [cowList, setCowList] = useState([]);
+  const [totalAnimalsCountArr, setTotalAnimalsCountArr] = useState([]);
 
   useEffect(() => {
-    return onAuthStateChanged(auth, currentUser => {
+    const unsubscribe = subscribeToAuth(currentUser => {
       if (currentUser) {
+        setTimeout(() => setLoading(false), 300);
         setUser(currentUser);
-        console.log("UID:", currentUser.uid);
-        console.log("Project ID:", db.app.options.projectId);
+        // console.log("UID:", currentUser.uid);
+        // console.log("Project ID:", db.app.options.projectId);
       } else {
         console.log("User not logged in");
       }
-
-      setTimeout(() => setLoading(false), 300);
-      // setLoading(false);
     });
+    // return unsubscribe;
+    getCowList();
   }, []);
 
-  const getAnimals = async uid => {
+  useEffect(() => {
+    animalCount(cowList);
+  }, [cowList]);
+
+  const animalCount = cowList => {
+    setTotalAnimalsCountArr[0] = cowList.length;
+    let cowCount = 0;
+    let calfCount = 0;
+    cowList.forEach(animal => {
+      if (animal.animalType.toLowerCase() === "cow") cowCount++;
+      if (animal.animalType.toLowerCase() === "calf") calfCount++;
+    });
+    setTotalAnimalsCountArr[1] = cowCount;
+    setTotalAnimalsCountArr[2] = calfCount;
+    setTotalAnimalsCountArr([cowList.length, cowCount, calfCount]);
+  };
+
+  const getCowList = async () => {
     try {
-      const querySnapShot = await getDocs(collection(db, "users", uid, "cows"));
-      const animalList = querySnapShot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      // console.log(animalList);
-
-      return animalList;
+      const list = await getCollection("cows");
+      setCowList(list);
+      console.log("List", list);
     } catch (error) {
-      console.error("ERROR fetching cows:", error);
+      console.error(error);
     }
   };
 
@@ -66,7 +80,13 @@ const App = () => {
         />
         <Route
           path='/cows'
-          element={<Cows user={user} getAnimals={getAnimals} />}
+          element={
+            <Cows
+              cowList={cowList}
+              setCowList={setCowList}
+              totalAnimalsCountArr={totalAnimalsCountArr}
+            />
+          }
         />
         <Route
           path='/login'

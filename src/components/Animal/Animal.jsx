@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./Animal.module.css";
+import app from "../../App.module.css";
 import {
   ArrowLeft,
   IndianRupee,
@@ -7,30 +8,23 @@ import {
   Milk,
   PawPrint,
 } from "lucide-react";
+import { getDocument } from "../../firebase/firestore";
 
-const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
-  const [imageUrl, setImageUrl] = useState(null);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
-  const [category, setCategory] = useState("");
-  const [litres, setLitres] = useState("");
-  const [animalType, setAnimalType] = useState("");
-  const [address, setAddress] = useState("");
+const Animal = ({ animalId, setOpenAnimal, cowList }) => {
+  const [animalData, setAnimalData] = useState({});
 
-  getAnimalData(animalId).then(data => {
-    setImageUrl(data.img);
-    setName(data.name);
-    setPrice(data.price);
-    setDate(data.date);
-    setCategory(data.category);
-    setLitres(data.litres);
-    setAnimalType(data.animalType);
-    setAddress(data.address);
-  });
+  useEffect(() => {
+    getAnimalData();
+  }, []);
+
+  const getAnimalData = () => {
+    cowList.forEach(cow => {
+      if (cow.id === animalId) setAnimalData(cow);
+    });
+  };
 
   return (
-    <div className={`${style.animal} ${style.animateEnter}`}>
+    <div className={`${style.animal} ${app.animateRight}`}>
       <div className={style.head}>
         <ArrowLeft onClick={() => setOpenAnimal(false)} />
         <h2 className={style.heading}>Cow Details</h2>
@@ -38,16 +32,16 @@ const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
       </div>
       <div className={style.scrollable}>
         <div className={style.body}>
-          <div className={`${style.image} ${style.animateAppear}`}>
-            <img src={imageUrl} alt='cow-image' />
+          <div className={`${style.image}`}>
+            <img src={animalData.img} alt='cow-image' />
           </div>
           <div className={style.details}>
-            <h3 className={style.name}>{name}</h3>
+            <h3 className={style.name}>{animalData.name}</h3>
             <div className={style.categoryAndType}>
               <span>
-                {category} • {animalType}
+                {animalData.category} • {animalData.animalType}
               </span>
-              <span className={style.address}>{address}</span>
+              <span className={style.address}>{animalData.animalType}</span>
             </div>
             <div className={style.card}>
               <div className={style.grid}>
@@ -56,13 +50,13 @@ const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
                 </div>
                 <div className={style.gridDetails}>
                   <h3>
-                    {animalType.toLocaleLowerCase() === "cow"
+                    {animalData.animalType?.toLowerCase() === "cow"
                       ? "Milk Capacity"
                       : "Growing"}
                   </h3>
                   <span>
-                    {animalType.toLocaleLowerCase() === "cow"
-                      ? litres
+                    {animalData.animalType?.toLowerCase() === "cow"
+                      ? `${animalData.litres} L`
                       : "No milk"}
                   </span>
                 </div>
@@ -73,7 +67,7 @@ const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
                 </div>
                 <div className={style.gridDetails}>
                   <h3>Category</h3>
-                  <span>{category}</span>
+                  <span>{animalData.category}</span>
                 </div>
               </div>
               <div className={style.grid}>
@@ -82,7 +76,7 @@ const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
                 </div>
                 <div className={style.gridDetails}>
                   <h3>Price</h3>
-                  <span>{price}₹</span>
+                  <span>{animalData.price}₹</span>
                 </div>
               </div>
               <div className={style.grid}>
@@ -91,7 +85,7 @@ const Animal = ({ animalId, getAnimalData, setOpenAnimal }) => {
                 </div>
                 <div className={style.gridDetails}>
                   <h3>Address</h3>
-                  <span>{address}</span>
+                  <span>{animalData.address}</span>
                 </div>
               </div>
             </div>

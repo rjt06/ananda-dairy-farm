@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "./Cows.module.css";
-import { db } from "../../scripts/firebase.js";
+import app from "../../App.module.css";
 import { Camera, ChevronRight, ListFilter, Plus, Search } from "lucide-react";
-import { addDoc, collection, getDoc, doc } from "firebase/firestore";
-import { imageUpload } from "../../scripts/crud.js";
+import { imageUpload } from "../../scripts/uploadImage.js";
 import Animal from "../../components/Animal/Animal";
+import { addDocument, getCollection } from "../../firebase/firestore.js";
 
-function Cows({ user, getAnimals }) {
+function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
   const [search, setSearch] = useState("");
   const [openAddAnimal, setOpenAddAnimal] = useState(false);
   const [openAnimal, setOpenAnimal] = useState(false);
@@ -19,94 +19,23 @@ function Cows({ user, getAnimals }) {
   const [address, setAddress] = useState("");
   const [animalType, setAnimalType] = useState("");
   const [animalId, setAnimalId] = useState("");
-  const [animalList, setAnimalList] = useState([]);
-  const [tempAnimalList, setTempAnimalList] = useState([]);
-  const [totalAnimalsCount, setTotalAnimalsCount] = useState();
-  const [totalCowCount, setTotalCowCount] = useState(0);
-  const [totalCalfCount, setTotalCalfCount] = useState(0);
+  const [tempCowList, setTempCowList] = useState([]);
   const [herd, setHerd] = useState("all");
   const addCowRef = useRef(null);
   const cowTypeRef = useRef(null);
   const calfTypeRef = useRef(null);
 
   useEffect(() => {
-    getListfromCloud();
-    // console.log(user.uid);
+    setTempCowList(cowList);
+    if (cowList.length === 0) {
+      getNewCowList();
+      console.log(cowList);
+    }
   }, []);
 
   useEffect(() => {
-    animalCount(animalList);
-  }, [animalList]);
-
-  useEffect(() => {
-    sortList(animalList);
+    sortList(cowList);
   }, [herd]);
-
-  const addAnimal = async (
-    { img, name, price, date, category, litres = 0, animalType, address },
-    uid,
-  ) => {
-    try {
-      const cowDocRef = await addDoc(collection(db, "users", uid, "cows"), {
-        img: img,
-        name: name,
-        price: price,
-        date: date,
-        category: category,
-        litres: litres,
-        animalType: animalType,
-        address: address,
-      });
-
-      // console.log("COW Document ID:", cowDocRef.id);
-    } catch (error) {
-      console.error("Error ->>>>", error);
-    }
-  };
-
-  const sortList = animalList => {
-    let sortedList;
-    if (herd === "all") {
-      sortedList = animalList.filter(animal => true);
-    } else if (herd === "cow") {
-      sortedList = animalList.filter(animal => animal.animalType === "cow");
-    } else if (herd === "calf") {
-      sortedList = animalList.filter(animal => animal.animalType === "calf");
-    }
-    setTempAnimalList(sortedList);
-  };
-
-  const getListfromCloud = async () => {
-    const animalList = await getAnimals(user.uid);
-    setAnimalList(animalList);
-    setTempAnimalList(animalList);
-    // console.log(animalList);
-  };
-
-  const getAnimalData = async animalId => {
-    try {
-      const animalData = await getDoc(
-        doc(db, "users", user.uid, "cows", animalId),
-      );
-
-      // console.log(animalList);
-      return animalData.data();
-    } catch (error) {
-      console.error("ERROR fetching animaldata:", error);
-    }
-  };
-
-  const animalCount = animalList => {
-    setTotalAnimalsCount(animalList.length);
-    let cowCount = 0;
-    let calfCount = 0;
-    animalList.forEach(animal => {
-      if (animal.animalType == "cow") cowCount++;
-      if (animal.animalType == "calf") calfCount++;
-    });
-    setTotalCowCount(cowCount);
-    setTotalCalfCount(calfCount);
-  };
 
   const openAddCowBox = () => {
     if (openAddAnimal) {
@@ -123,6 +52,31 @@ function Cows({ user, getAnimals }) {
     }
   };
 
+  const sortList = animalList => {
+    let sortedList;
+    if (herd === "all") {
+      sortedList = animalList;
+    } else if (herd === "cow") {
+      sortedList = animalList.filter(
+        animal => animal.animalType.toLowerCase() === "cow",
+      );
+    } else if (herd === "calf") {
+      sortedList = animalList.filter(
+        animal => animal.animalType.toLowerCase() === "calf",
+      );
+    }
+    setTempCowList(sortedList);
+  };
+
+  const getNewCowList = async () => {
+    try {
+      const list = await getCollection("cows");
+      setCowList(list);
+      setTempCowList(list);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const submitForm = async e => {
     console.log("Form submitted");
     e.preventDefault();
@@ -132,19 +86,17 @@ function Cows({ user, getAnimals }) {
       throw new Error("Image upload failed");
     }
     // console.log("UPLOADED Image", uploadedImg);
-    addAnimal(
-      {
-        img: imageUrl,
-        name: name,
-        price: price,
-        date: date,
-        category: category,
-        litres: litres,
-        animalType: animalType,
-        address: address,
-      },
-      user.uid,
-    );
+    const newAnimal = {
+      img: imageUrl,
+      name: name,
+      price: price,
+      date: date,
+      category: category,
+      litres: litres,
+      animalType: animalType,
+      address: address,
+    };
+    addDocument("cows", newAnimal);
     setAnimalImage(null);
     setName("");
     setPrice("");
@@ -153,16 +105,16 @@ function Cows({ user, getAnimals }) {
     setLitres("");
     setAddress("");
     console.log("Animal Listed");
-    getListfromCloud();
+    getNewCowList();
   };
 
   return (
-    <div className={style.cows}>
+    <div className={`${style.cows} ${app.animateEnter}`}>
       {openAnimal ? (
         <Animal
           animalId={animalId}
-          getAnimalData={getAnimalData}
           setOpenAnimal={setOpenAnimal}
+          cowList={cowList}
         />
       ) : (
         ""
@@ -349,7 +301,7 @@ function Cows({ user, getAnimals }) {
             />
             All
             <span className={` ${herd === "all" ? style.herdSpanSelect : ""}`}>
-              {totalAnimalsCount}
+              {totalAnimalsCountArr[0]}
             </span>
           </label>
           <label
@@ -365,7 +317,7 @@ function Cows({ user, getAnimals }) {
             />
             Cow
             <span className={` ${herd === "cow" ? style.herdSpanSelect : ""}`}>
-              {totalCowCount}
+              {totalAnimalsCountArr[1]}
             </span>
           </label>
           <label
@@ -381,7 +333,7 @@ function Cows({ user, getAnimals }) {
             />
             Calf
             <span className={` ${herd === "calf" ? style.herdSpanSelect : ""}`}>
-              {totalCalfCount}
+              {totalAnimalsCountArr[2]}
             </span>
           </label>
         </ul>
@@ -404,7 +356,7 @@ function Cows({ user, getAnimals }) {
       </div>
       <div className={style.cowLists}>
         {/* /////////////////////////////////////////////////////////// */}
-        {tempAnimalList.map(animal => {
+        {tempCowList.map(animal => {
           return (
             <div
               key={animal.id}

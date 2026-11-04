@@ -1,5 +1,5 @@
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../scripts/firebase";
+import { auth } from "../../firebase/firebase";
 import style from "./Login.module.css";
 import logo from "../../assets/logo.webp";
 import backgroundImg from "../../assets/background.webp";
