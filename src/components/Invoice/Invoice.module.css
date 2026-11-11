@@ -136,7 +136,7 @@
 .calculateBtn {
   font-size: 1.4rem;
   text-align: center;
-  /* color: white; */
+  color: rgba(255, 255, 255, 0.95);
   background-color: rgb(254, 97, 97);
 }
 

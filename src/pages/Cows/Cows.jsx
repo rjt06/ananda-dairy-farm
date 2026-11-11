@@ -5,6 +5,7 @@ import { Camera, ChevronDown, ListFilter, Plus, Search } from "lucide-react";
 import { imageUpload } from "../../scripts/uploadImage.js";
 import Animal from "../../components/Animal/Animal";
 import { addDocument, getCollection } from "../../firebase/firestore.js";
+import EmptyList from "../../components/EmptyList/EmptyList.jsx";
 
 function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
   const [search, setSearch] = useState("");
@@ -370,6 +371,7 @@ function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
 
         <div className={style.cowLists}>
           {/* /////////////////////////////////////////////////////////// */}
+          {tempCowList.length === 0 && <EmptyList messegeFor={"animal"} />}
           {tempCowList.map(animal => {
             return (
               <div className={style.outerCowList} key={animal.id}>

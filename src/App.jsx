@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase/firebase";
 import Splash from "./components/Splash/Splash";
-// import { collection, getDocs } from "firebase/firestore";
 import style from "./App.module.css";
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -22,6 +21,7 @@ const App = () => {
   const location = useLocation();
   const [cowList, setCowList] = useState([]);
   const [medList, setMedList] = useState([]);
+  const [feedList, setFeedList] = useState([]);
   const [totalAnimalsCountArr, setTotalAnimalsCountArr] = useState([]);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const App = () => {
     // return unsubscribe;
     getCowList();
     getMedList();
+    getFeedList();
   }, []);
 
   useEffect(() => {
@@ -76,6 +77,15 @@ const App = () => {
     }
   };
 
+  const getFeedList = async () => {
+    try {
+      const list = await getCollection("feed");
+      setFeedList(list);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading) return <Splash />;
 
   return (
@@ -107,7 +117,10 @@ const App = () => {
           path='/meds'
           element={<Meds medList={medList} setMedList={setMedList} />}
         />
-        <Route path='/feed' element={<Feed />} />
+        <Route
+          path='/feed'
+          element={<Feed feedList={feedList} setFeedList={setFeedList} />}
+        />
       </Routes>
     </>
   );

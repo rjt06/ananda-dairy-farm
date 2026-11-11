@@ -1,0 +1,305 @@
+.feed {
+  margin: 0 auto;
+  padding-top: 22.7rem;
+  max-width: 55rem;
+}
+
+.head {
+  /* padding-top: 5rem; */
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  top: 7rem;
+  width: 100%;
+  padding-top: 1rem;
+  background-color: var(--bg-color);
+  z-index: 1;
+  /* background-color: lightblue; */
+}
+
+.heading {
+  width: 100%;
+  font-size: 2.2rem;
+  margin-left: 3rem;
+  margin-top: 5.4rem;
+  font-weight: 900;
+}
+
+.plusIcon {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.plusIconBig {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  transform: rotate(45deg);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.plusIconBox {
+  background-color: rgb(190, 89, 0);
+  height: 5rem;
+  width: 5rem;
+  /* box-shadow: 0 3px 5px rgba(128, 128, 128, 0.388); */
+  cursor: pointer;
+  transition: all 0.6s ease;
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 3rem;
+  transition: all 0.3s ease-out;
+}
+
+.plusIconBoxBig {
+  position: absolute;
+  top: 6rem;
+  right: 2%;
+  height: 29.8rem;
+  width: 95%;
+  /* background-color: var(--bg-color); */
+  backdrop-filter: blur(4rem);
+  border-radius: 3rem;
+  box-shadow:
+    0 10px 15px black,
+    inset 0 10px rgb(190, 89, 0);
+  border: 3px solid rgb(190, 89, 0);
+  transition: all 0.3s ease-out;
+}
+
+.addFeedBoxHidden {
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.addFeedBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+  padding-top: 2.8rem;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.addFeedHeading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* //////////////////////////////////////// */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.label,
+.labelTextarea {
+  color: grey;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.input {
+  border: 1px solid rgb(165, 164, 164);
+  outline: none;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem;
+  padding-left: 1.4rem;
+  width: 100%;
+  background-color: transparent;
+  color: rgb(27, 27, 27);
+}
+
+.input::placeholder {
+  color: rgb(210, 210, 210);
+}
+
+.nameAndPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+
+.dateInputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.dateInput {
+  border: 1px solid rgb(165, 164, 164);
+  resize: none;
+  outline: none;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem;
+  padding-left: 1.4rem;
+  width: 100%;
+  background-color: transparent;
+  color: rgb(27, 27, 27);
+}
+
+.textarea::placeholder {
+  color: rgb(210, 210, 210);
+}
+
+.saveFeedBtn {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.4rem;
+  border-radius: 1.4rem;
+  background-color: rgb(190, 89, 0);
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* /////////////////////////////////////////////// */
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1.6rem;
+  gap: 2rem;
+  width: 100%;
+  padding: 0 1.6rem;
+  margin-top: 1.65rem;
+  padding-bottom: 0.4rem;
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.217); */
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  background-color: rgba(172, 172, 172, 0.15);
+}
+
+.searchInput {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.searchInput::placeholder {
+  color: rgba(105, 105, 105, 0.42);
+}
+
+.filterIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 2px solid rgba(128, 128, 128, 0.251);
+  /* border-radius: 1.6rem; */
+}
+
+/* ///////////////////////////////////////////////// */
+
+.feedLists {
+  margin: 0 1.6rem;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: 1fr 1fr; */
+  gap: 0.6rem;
+}
+
+.feedList {
+  list-style: none;
+  padding: 1rem;
+  background-color: rgba(204, 116, 0, 0.237);
+  border-radius: 1.8rem;
+  border: 1px solid white;
+}
+
+.listTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.first {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.second {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: 2rem; */
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.282);
+  border: 1px solid rgb(169, 93, 0);
+  cursor: pointer;
+}
+
+.iconBox {
+  display: flex;
+  border-radius: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.282);
+  border: 1px solid rgb(150, 82, 0);
+  height: 4.6rem;
+  width: 4.6rem;
+}
+
+.feedName {
+  color: rgb(62, 34, 0);
+  font-size: 1.6rem;
+}
+
+.feedPrice {
+  color: rgba(88, 50, 0, 0.625);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.feedDate {
+  padding: 1rem 0;
+  margin-left: 10rem;
+  font-size: 1.4rem;
+  color: rgb(62, 34, 0);
+}

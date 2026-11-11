@@ -237,8 +237,9 @@
 
 .medLists {
   margin: 0 1.6rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: 1fr 1fr; */
   gap: 0.6rem;
 }
 
@@ -298,20 +299,8 @@
 
 .textArea {
   padding: 1rem 0;
+  font-size: 1.2rem;
   color: rgb(0, 39, 68);
 }
 
 /* //////////////////////////////////// */
-
-.noMedicinesBox {
-  margin: 3rem;
-  text-align: center;
-
-  .exclamationIconBox {
-    display: inline-block;
-    /* padding: 1rem 1.2rem; */
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    /* background-color: rgba(255, 0, 0, 0.1); */
-  }
-}

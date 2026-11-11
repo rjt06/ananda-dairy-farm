@@ -19,7 +19,8 @@ function Pdf({ ref, date, name, phone, dailyLitres, price, days, total }) {
             <span className={style.milkDeliveryText}>MILK DELIVERY</span>
             <span className={style.invoiceText}>INVOICE</span>
             <span className={style.invoiceNumber}>
-              Invoice No.: INV-<span>{crypto.randomUUID()}</span>
+              Invoice No.: INV-
+              <span>{crypto.randomUUID().replaceAll("-", "").slice(0, 8)}</span>
             </span>
           </div>
         </div>

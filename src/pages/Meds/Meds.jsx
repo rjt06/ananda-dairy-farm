@@ -1,20 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import style from "./Meds.module.css";
 import app from "../../App.module.css";
-import {
-  ListFilter,
-  Pill,
-  Plus,
-  Search,
-  SquareExclamationPoint,
-  Syringe,
-  Trash,
-} from "lucide-react";
+import { ListFilter, Pill, Plus, Search, Syringe, Trash } from "lucide-react";
 import {
   addDocument,
   deleteDocument,
   getCollection,
 } from "../../firebase/firestore";
+import EmptyList from "../../components/EmptyList/EmptyList";
 
 function Meds({ medList, setMedList }) {
   const [openAddMed, setOpenAddMed] = useState(false);
@@ -52,7 +45,6 @@ function Meds({ medList, setMedList }) {
   };
 
   const submitMedForm = () => {
-    console.log("Hello");
     setOpenAddMed(false);
     const newMeds = {
       medName: medName,
@@ -164,14 +156,7 @@ function Meds({ medList, setMedList }) {
         </div>
       </div>
       <div className={`${style.meds} ${app.animateEnter}`}>
-        {medList.length === 0 && (
-          <div className={style.noMedicinesBox}>
-            <div className={style.exclamationIconBox}>
-              <SquareExclamationPoint size={50} color='red' strokeWidth={3} />
-            </div>
-            <h3>You haven't added any medicines yet</h3>
-          </div>
-        )}
+        {medList.length === 0 && <EmptyList messegeFor={"medicine"} />}
         <ul className={style.medLists}>
           {medList.map(med => {
             return (
