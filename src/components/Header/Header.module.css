@@ -10,7 +10,7 @@
   width: 100%;
   overflow: hidden;
   background-color: var(--bg-color);
-  z-index: 1000;
+  z-index: 1;
 }
 
 .logoName {

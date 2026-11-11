@@ -3,6 +3,7 @@ import bottomImg from "../../assets/bottom-img.webp";
 import logoName from "../../assets/logoName.webp";
 import signature from "../../assets/signature.webp";
 import { CalendarRange, UserRound } from "lucide-react";
+import { dateToday } from "../../scripts/date.js";
 import style from "./Pdf.module.css";
 
 function Pdf({ ref, date, name, phone, dailyLitres, price, days, total }) {
@@ -18,7 +19,7 @@ function Pdf({ ref, date, name, phone, dailyLitres, price, days, total }) {
             <span className={style.milkDeliveryText}>MILK DELIVERY</span>
             <span className={style.invoiceText}>INVOICE</span>
             <span className={style.invoiceNumber}>
-              Invoice No.: INV-<span>3238DI-3232</span>
+              Invoice No.: INV-<span>{crypto.randomUUID()}</span>
             </span>
           </div>
         </div>
@@ -29,7 +30,7 @@ function Pdf({ ref, date, name, phone, dailyLitres, price, days, total }) {
             </div>
             <div className={style.dateSpans}>
               <span>Invoice Date</span>
-              <h3 className={style.date}>22 October 2026</h3>
+              <h3 className={style.date}>{dateToday()}</h3>
             </div>
           </div>
           <div className={style.verticalLine}></div>

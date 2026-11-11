@@ -21,12 +21,13 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const [cowList, setCowList] = useState([]);
+  const [medList, setMedList] = useState([]);
   const [totalAnimalsCountArr, setTotalAnimalsCountArr] = useState([]);
 
   useEffect(() => {
     const unsubscribe = subscribeToAuth(currentUser => {
       if (currentUser) {
-        setTimeout(() => setLoading(false), 300);
+        // setTimeout(() => setLoading(false), 300);
         setUser(currentUser);
         // console.log("UID:", currentUser.uid);
         // console.log("Project ID:", db.app.options.projectId);
@@ -36,6 +37,7 @@ const App = () => {
     });
     // return unsubscribe;
     getCowList();
+    getMedList();
   }, []);
 
   useEffect(() => {
@@ -59,7 +61,16 @@ const App = () => {
     try {
       const list = await getCollection("cows");
       setCowList(list);
-      console.log("List", list);
+      setTimeout(() => setLoading(false), 300);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getMedList = async () => {
+    try {
+      const list = await getCollection("meds");
+      setMedList(list);
     } catch (error) {
       console.error(error);
     }
@@ -92,7 +103,10 @@ const App = () => {
           path='/login'
           element={user ? <Navigate to='/' replace /> : <Login />}
         />
-        <Route path='/meds' element={<Meds user={user} />} />
+        <Route
+          path='/meds'
+          element={<Meds medList={medList} setMedList={setMedList} />}
+        />
         <Route path='/feed' element={<Feed />} />
       </Routes>
     </>

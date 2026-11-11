@@ -1,9 +1,11 @@
 .invoice {
-  border: 1px solid rgba(128, 128, 128, 0.474);
   margin: 2rem;
   border-radius: 3rem;
   padding: 1.6rem;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 5px 5px rgba(0, 0, 0, 0.393),
+    0 -3px 3px green;
+  background-color: white;
 }
 
 .pdfContainer {
@@ -21,7 +23,12 @@
   padding-bottom: 1.2rem;
   font-size: 1.8rem;
   font-weight: 900;
+  color: green;
   border-bottom: 1px solid rgb(165, 164, 164);
+  box-shadow:
+    0 0.2rem 0.2rem rgb(0, 102, 0),
+    inset 0 -0.6rem 0.6rem rgba(0, 103, 0, 0.708);
+  border-radius: 4rem;
 }
 
 .dateAndPhoneInputBox {
@@ -119,16 +126,18 @@
 .btn {
   width: 48%;
   border-radius: 2rem;
-  border: 2px solid rgba(128, 128, 128, 0.158);
+  border: 1px solid rgba(89, 89, 89, 0.502);
   padding: 1rem 1.4rem;
   font-weight: 900;
   color: rgb(80, 80, 80);
+  cursor: pointer;
 }
 
 .calculateBtn {
   font-size: 1.4rem;
   text-align: center;
-  background-color: rgba(153, 148, 86, 0.229);
+  /* color: white; */
+  background-color: rgb(254, 97, 97);
 }
 
 .downloadBtn {

@@ -50,7 +50,7 @@ function Home({ user }) {
 
       <div className={style.milkCard}>
         <div className={style.milkDetails}>
-          <Milk size={75} strokeWidth={3} fill='white' color='white' />
+          <Milk size={70} fill='white' color='white' />
           <div className={style.milkCardText}>
             <h3>Today's Milk</h3>
             <p>102 L</p>

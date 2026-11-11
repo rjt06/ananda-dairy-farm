@@ -1,8 +1,11 @@
 .animateEnter {
-  animation: enter 0.4s ease both;
+  animation: enter 0.2s ease both;
+}
+.animateDown {
+  animation: down 2s ease both;
 }
 .animateRight {
-  animation: right 0.2s ease both;
+  animation: right 0.4s ease both;
 }
 
 .animateAppear {
@@ -12,7 +15,7 @@
 @keyframes enter {
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.98);
+    transform: translateY(40px) scale(1);
   }
   50% {
     opacity: 1;
@@ -21,11 +24,34 @@
     transform: translateY(0) scale(1);
   }
 }
+@keyframes down {
+  0% {
+    opacity: 0;
+    transform: scale(0.21) translateX(-690px) translateY(-1400px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: scale(0.21) translateX(-500px) translateY(-1000px);
+  }
+
+  50% {
+    transform: translateY(0) scaleY(1.01) scaleX(0.99) translateX(0);
+  }
+
+  70% {
+    transform: translateY(0) scaleY(0.99) scaleX(1.01) translateX(0);
+  }
+
+  100% {
+    transform: translateY(0) scale(1) translateX(0);
+  }
+}
 
 @keyframes right {
   0% {
     opacity: 0;
-    transform: translateX(40px) scale(0.98);
+    transform: translateX(300px) scale(1);
   }
   50% {
     opacity: 1;
