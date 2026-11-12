@@ -31,11 +31,22 @@
   flex-direction: column;
 }
 
+.nameAndDate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .name {
   font-size: 3rem;
   padding-left: 1rem;
   margin-bottom: 0.6rem;
   font-weight: 900;
+}
+
+.date {
+  font-size: 1.4rem;
+  margin-right: 1.6rem;
 }
 
 .categoryAndEdit {

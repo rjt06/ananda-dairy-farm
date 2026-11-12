@@ -12,6 +12,7 @@ import {
   Worm,
 } from "lucide-react";
 import { addDewormingIntoObj, getDocument } from "../../firebase/firestore";
+import { formatDate } from "../../scripts/date";
 
 const Animal = ({ animalId, cowList }) => {
   const [animalData, setAnimalData] = useState({});
@@ -33,7 +34,7 @@ const Animal = ({ animalId, cowList }) => {
     addDewormingIntoObj("cows", animalId, {
       // id: crypto.randomUUID(),
       medicine: medicine,
-      date: date,
+      date: formatDate(date),
     });
     console.log("Listed");
     setDate("");
@@ -47,7 +48,10 @@ const Animal = ({ animalId, cowList }) => {
           <img src={animalData.img} alt='cow-image' />
         </div>
         <div className={style.details}>
-          <h3 className={style.name}>{animalData.name}</h3>
+          <div className={style.nameAndDate}>
+            <h3 className={style.name}>{animalData.name}</h3>
+            <h4 className={style.date}>{animalData.date}</h4>
+          </div>
           <div className={style.categoryAndEdit}>
             <div className={style.categoryAndType}>
               <span>

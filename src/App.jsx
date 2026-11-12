@@ -19,6 +19,7 @@ const App = () => {
   const [user, setUser] = useState(getCurrentUser());
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const [dewormingList, setDewormingList] = useState([]);
   const [cowList, setCowList] = useState([]);
   const [medList, setMedList] = useState([]);
   const [feedList, setFeedList] = useState([]);
@@ -26,19 +27,20 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = subscribeToAuth(currentUser => {
+      setTimeout(() => setLoading(false), 300);
       if (currentUser) {
-        // setTimeout(() => setLoading(false), 300);
+        // console.log("User loged in");
         setUser(currentUser);
+        getCowList();
+        getMedList();
+        getFeedList();
         // console.log("UID:", currentUser.uid);
         // console.log("Project ID:", db.app.options.projectId);
       } else {
-        console.log("User not logged in");
+        // console.log("User not logged in");
       }
     });
-    // return unsubscribe;
-    getCowList();
-    getMedList();
-    getFeedList();
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
@@ -62,7 +64,11 @@ const App = () => {
     try {
       const list = await getCollection("cows");
       setCowList(list);
-      setTimeout(() => setLoading(false), 300);
+      setDewormingList(
+        list
+          .filter(cow => cow.deworming)
+          .map(cow => [cow.img, cow.name, cow.deworming]),
+      );
     } catch (error) {
       console.error(error);
     }
@@ -96,7 +102,11 @@ const App = () => {
         <Route
           path='/'
           element={
-            user ? <Home user={user} /> : <Navigate to='/login' replace />
+            user ? (
+              <Home user={user} dewormingList={dewormingList} />
+            ) : (
+              <Navigate to='/login' replace />
+            )
           }
         />
         <Route

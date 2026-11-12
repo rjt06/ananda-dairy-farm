@@ -22,3 +22,24 @@ export const greetingMessage = () => {
   if (17 <= hours && hours < 24) greeting = "Good Evening";
   return greeting;
 };
+
+export const formatDate = date => {
+  const months = [
+    "Jan",
+    "Feb",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let string = date.split("-").toReversed();
+  let string2 = months.at(string.at(1) - 1);
+  let formattedDate = `${string.at(0)} ${string2} ${string.at(2).slice(2, 4)}`;
+  return formattedDate;
+};

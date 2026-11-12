@@ -1,0 +1,35 @@
+.milkCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2rem;
+  background: linear-gradient(20deg, rgb(0, 41, 0) 10%, rgb(0, 129, 0));
+  margin: 1.6rem;
+  padding: 1.8rem;
+  box-shadow:
+    0 0.5rem 0.5rem rgba(0, 0, 0, 0.216),
+    inset -1rem 1rem 4rem rgba(0, 0, 0, 0.448);
+}
+
+.milkDetails {
+  display: flex;
+  gap: 1rem;
+  color: white;
+}
+
+.milkCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 2.6rem;
+    font-weight: 900;
+  }
+}
+.rightarrowIcon {
+  margin-right: 1rem;
+}

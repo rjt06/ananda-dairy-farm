@@ -1,11 +1,16 @@
 .invoice {
   margin: 2rem;
+  margin-top: 3rem;
   border-radius: 3rem;
   padding: 1.6rem;
+  /* box-shadow:
+    0 5px 5px rgba(0, 0, 0, 0.393),
+    0 -3px 3px green; */
   box-shadow:
     0 5px 5px rgba(0, 0, 0, 0.393),
-    0 -3px 3px green;
+    0 -15px rgba(31, 111, 31, 0.934);
   background-color: white;
+  /* border-top: 1rem solid green; */
 }
 
 .pdfContainer {
@@ -23,11 +28,9 @@
   padding-bottom: 1.2rem;
   font-size: 1.8rem;
   font-weight: 900;
-  color: green;
+  /* color: green; */
   border-bottom: 1px solid rgb(165, 164, 164);
-  box-shadow:
-    0 0.2rem 0.2rem rgb(0, 102, 0),
-    inset 0 -0.6rem 0.6rem rgba(0, 103, 0, 0.708);
+  box-shadow: 0 0.2rem 0.2rem rgba(206, 205, 205, 0.59);
   border-radius: 4rem;
 }
 

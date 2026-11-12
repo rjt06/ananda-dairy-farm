@@ -17,6 +17,7 @@ import {
   getCollection,
 } from "../../firebase/firestore";
 import EmptyList from "../../components/EmptyList/EmptyList";
+import { formatDate } from "../../scripts/date";
 
 function Feed({ feedList, setFeedList }) {
   const [openAddFeed, setOpenAddFeed] = useState(false);
@@ -58,7 +59,7 @@ function Feed({ feedList, setFeedList }) {
     const newFeed = {
       feedName: feedName,
       feedPrice: feedPrice,
-      feedDate: feedDate,
+      feedDate: formatDate(feedDate),
     };
     addDocument("feed", newFeed);
     setFeedName("");
@@ -179,10 +180,11 @@ function Feed({ feedList, setFeedList }) {
                     </div>
                     <div>
                       <div className={style.feedName}>{feed.feedName}</div>
-                      <div className={style.feedPrice}>₹{feed.feedPrice}</div>
+                      <div className={style.feedDate}>{feed.feedDate}</div>
                     </div>
                   </div>
-                  <div className={style.feedDate}>{feed.feedDate}</div>
+
+                  <div className={style.feedPrice}>₹{feed.feedPrice}</div>
                   <div className={style.second}>
                     <Trash
                       color='rgb(137, 75, 0)'

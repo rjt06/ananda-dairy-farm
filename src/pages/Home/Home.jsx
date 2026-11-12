@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Home.module.css";
 import app from "../../App.module.css";
 import { dateWithDay, greetingMessage } from "../../scripts/date";
@@ -23,46 +23,21 @@ import {
 import Reminder from "../../components/Reminder/Reminder";
 import Transactions from "../../components/Transactions/Transactions";
 import Invoice from "../../components/Invoice/Invoice";
+import Deworming from "../../components/Deworming/Deworming";
+import MilkCard from "../../components/MilkCard/MilkCard";
+import GreetingCard from "../../components/GreetingCard/GreetingCard";
 
-function Home({ user }) {
+function Home({ user, dewormingList }) {
   const [type, setType] = useState("grid");
 
   return (
     <div className={`${style.home} ${app.animateEnter}`}>
-      <div className={style.greetingCard}>
-        <div className={style.greeting}>
-          <p className={style.goodMorning}>{greetingMessage()},</p>
-          <h3 className={style.userName}>
-            {user.displayName}
-            <Sun size={30} strokeWidth={3} fill='#ffbf00' color='#ffbf00' />
-          </h3>
-          <p className={style.date}>
-            <CalendarDays color='#6d6d6d' strokeWidth={3} size={18} />
-            {dateWithDay()}
-          </p>
-        </div>
-        <img
-          className={style.background}
-          src={backgroundImg}
-          alt='background'
-        />
-      </div>
-
-      <div className={style.milkCard}>
-        <div className={style.milkDetails}>
-          <Milk size={70} fill='white' color='white' />
-          <div className={style.milkCardText}>
-            <h3>Today's Milk</h3>
-            <p>102 L</p>
-          </div>
-        </div>
-        <div className={style.rightarrowIcon}>
-          <ChevronRight strokeWidth={3} color='white' />
-        </div>
-      </div>
+      <GreetingCard user={user} />
+      <MilkCard />
       <Quickcard type={type} />
       <Reminder />
       <Invoice />
+      {/* <Deworming dewormingList={dewormingList} /> */}
       <Transactions />
     </div>
   );

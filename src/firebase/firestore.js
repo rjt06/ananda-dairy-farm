@@ -11,11 +11,17 @@ import {
 import { db } from "./firebase";
 import { authReady, getCurrentUser } from "./auth";
 
-const currentUser = await authReady;
-const uid = currentUser?.uid;
+let uid;
 
 export const getCollection = async collectionName => {
   try {
+    const currentUser = await getCurrentUser();
+    uid = currentUser?.uid;
+
+    if (!uid) {
+      throw new Error("User not Authenticated");
+    }
+
     const querySnapShot = await getDocs(
       collection(db, "users", uid, collectionName),
     );
@@ -26,15 +32,21 @@ export const getCollection = async collectionName => {
     return dataList;
   } catch (error) {
     console.error("ERROR fetching data:", error);
+    throw error;
   }
 };
 
 export const getDocument = async (collectionName, docId) => {
   try {
+    if (!uid) {
+      throw new Error("User not Authenticated");
+    }
+
     const data = await getDoc(doc(db, "users", uid, collectionName, docId));
     return data.data();
   } catch (error) {
     console.error("ERROR fetching animaldata:", error);
+    throw error;
   }
 };
 

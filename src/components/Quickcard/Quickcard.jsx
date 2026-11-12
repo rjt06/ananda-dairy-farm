@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "./Quickcard.module.css";
+import app from "../../App.module.css";
+
 import {
   ChevronRight,
   PawPrint,
@@ -20,7 +22,7 @@ function Quickcard() {
 
   return (
     <>
-      <div className={style.chooseGrid}>
+      <div className={`${style.chooseGrid}`}>
         <h3 className={style.quickAccess}>Quick Access</h3>
         <div className={style.innerChoose}>
           <LayoutGridCircles
@@ -33,7 +35,7 @@ function Quickcard() {
         </div>
       </div>
       <div
-        className={`${style.quickList} ${type === "list" ? style.makeQuickList : style.makeQuickGrid}`}
+        className={`${style.quickList} ${type === "list" ? style.makeQuickList : style.makeQuickGrid} ${app.animateEnter}`}
       >
         <Link
           to='/cows'

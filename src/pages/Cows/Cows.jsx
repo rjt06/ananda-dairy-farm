@@ -6,6 +6,7 @@ import { imageUpload } from "../../scripts/uploadImage.js";
 import Animal from "../../components/Animal/Animal";
 import { addDocument, getCollection } from "../../firebase/firestore.js";
 import EmptyList from "../../components/EmptyList/EmptyList.jsx";
+import { formatDate } from "../../scripts/date.js";
 
 function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
   const [search, setSearch] = useState("");
@@ -91,9 +92,9 @@ function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
       img: imageUrl,
       name: name,
       price: price,
-      date: date,
+      date: formatDate(date),
       category: category,
-      litres: litres,
+      litres: animalType === "Calf" ? "" : litres,
       animalType: animalType,
       address: address,
     };
@@ -359,16 +360,6 @@ function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
         </div>
       </div>
       <div className={`${style.cows} ${app.animateEnter}`}>
-        {/* {openAnimal ? (
-          <Animal
-            animalId={animalId}
-            setOpenAnimal={setOpenAnimal}
-            cowList={cowList}
-          />
-        ) : (
-          ""
-        )} */}
-
         <div className={style.cowLists}>
           {/* /////////////////////////////////////////////////////////// */}
           {tempCowList.length === 0 && <EmptyList messegeFor={"animal"} />}
@@ -379,7 +370,6 @@ function Cows({ cowList, setCowList, totalAnimalsCountArr }) {
                   className={style.cowList}
                   onClick={() => {
                     setAnimalId(animal.id);
-                    // setOpenAnimal(true);
                     setOpenId(openId === animal.id ? null : animal.id);
                   }}
                 >

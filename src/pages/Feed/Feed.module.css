@@ -292,14 +292,14 @@
 }
 
 .feedPrice {
-  color: rgba(88, 50, 0, 0.625);
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.feedDate {
   padding: 1rem 0;
   margin-left: 10rem;
   font-size: 1.4rem;
   color: rgb(62, 34, 0);
+}
+
+.feedDate {
+  color: rgba(88, 50, 0, 0.625);
+  font-size: 1rem;
+  font-weight: 700;
 }
